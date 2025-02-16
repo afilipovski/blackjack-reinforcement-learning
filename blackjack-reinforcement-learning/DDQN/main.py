@@ -28,10 +28,13 @@ if __name__ == "__main__":
         STATE_SPACE_SHAPE = 3
         NUM_ACTIONS = 2
         NUM_EPISODES = 50
-        BATCH_SIZE = 64
+        BATCH_SIZE = 175
         MEMORY_SIZE = 50000
-        EPSILON_DECAY = 0.999
-        MIN_EPSILON = 0.05
+        EPSILON_DECAY = 0.0001
+        MIN_EPSILON = 0.0125
+        LEARNING_RATE = 0.001
+        UPDATE_FREQ = 12
+        GAMMA = 0.5
 
         # User inputs
         is_training = execution_iterator%2==0
@@ -48,6 +51,8 @@ if __name__ == "__main__":
             target_model,
             batch_size=BATCH_SIZE,
             memory_size=MEMORY_SIZE,
+            learning_rate=LEARNING_RATE,
+            discount_factor=GAMMA
         )
 
         if is_training:
@@ -83,7 +88,7 @@ if __name__ == "__main__":
                     if len(agent.memory) > BATCH_SIZE:
                         agent.train()
 
-                    if episode % 100 == 0:
+                    if episode % UPDATE_FREQ == 0:
                         agent.update_target_model()
 
                     epsilon = max(MIN_EPSILON, epsilon * EPSILON_DECAY)
