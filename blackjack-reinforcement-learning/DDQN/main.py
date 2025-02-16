@@ -16,7 +16,7 @@ warnings.filterwarnings("ignore")
 
 
 if __name__ == "__main__":
-    series = 500
+    series = 2000
     for execution_iterator in range(2*series):
         ensure_directories()
 
@@ -118,7 +118,7 @@ if __name__ == "__main__":
                 agent.load("blackjack", NUM_EPISODES)
                 print("Loaded weights")
 
-                test_episodes = 1000
+                test_episodes = 10
                 test_rewards = []
 
                 for episode in range(test_episodes):
