@@ -1,5 +1,6 @@
 import os
 import csv
+from pathlib import Path
 import time
 from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras.models import Sequential
@@ -15,7 +16,8 @@ def ensure_directories():
 def setup_csv_logger(mode="training"):
     """Setup CSV logger with blackjack-specific metrics"""
     timestamp = time.strftime("%Y%m%d_%H%M%S")
-    csv_file = f"logs/{mode}_{timestamp}.csv"
+    csv_file = f"logs/{mode}/{timestamp}.csv"
+    Path(f"logs/{mode}").mkdir(parents=True, exist_ok=True)
 
     headers = [
         "Episode",
