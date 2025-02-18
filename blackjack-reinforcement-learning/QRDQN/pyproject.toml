@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "qrdqn"
+version = "0.1.0"
+description = ""
+authors = ["Aleksandar Filipovski <aleksandar@filipovski.net>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+gymnasium = "^1.0.0"
+sb3-contrib = "^2.5.0"
+optuna = "^4.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
