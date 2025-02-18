@@ -16,7 +16,6 @@ class BlackjackObsWrapper(gym.ObservationWrapper):
 def objective(trial):
     env = BlackjackObsWrapper(gym.make("Blackjack-v1"))
 
-    # Hyperparameter search space
     learning_rate = trial.suggest_loguniform("learning_rate", 1e-5, 1e-2)
     buffer_size = trial.suggest_int("buffer_size", 10_000, 500_000, step=10_000)
     batch_size = trial.suggest_categorical("batch_size", [32, 64, 128, 256])
@@ -40,15 +39,13 @@ def objective(trial):
         verbose=0,
     )
 
-    model.learn(total_timesteps=5000)  # Train the model
-    mean_reward, _ = evaluate_policy(model, env, n_eval_episodes=100)  # Evaluate performance
+    model.learn(total_timesteps=5000) 
+    mean_reward, _ = evaluate_policy(model, env, n_eval_episodes=100) 
 
-    return mean_reward  # Higher reward is better
+    return mean_reward 
 
-# Run Optuna optimization
 study = optuna.create_study(direction="maximize")
-study.optimize(objective, n_trials=15)  # Run 50 trials
+study.optimize(objective, n_trials=15)
 
-# Print best parameters
 print("Best parameters:", study.best_params)
 pass
