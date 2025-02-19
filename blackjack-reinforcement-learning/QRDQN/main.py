@@ -39,7 +39,7 @@ if input("Test?") == "Y":
 
     name = input("enter the name of the agent. ")
     model = QRDQN.load(name)
-    for i in range(100000):
+    for i in range(50000):
         obs, _ = env.reset()
         done = False
         obs, reward, done = 0,0,0
@@ -50,6 +50,6 @@ if input("Test?") == "Y":
             reward_sum += reward
             print(f"Action: {action}, Reward: {reward}")
         results.append(reward_sum)
-    print(len([r for r in results if r>=1]))
-    print(len([r for r in results if r==0]))
-    print(len([r for r in results if r==-1]))
+    print(len([r for r in results if r>=1])/len(results))
+    print(len([r for r in results if r==0])/len(results))
+    print(len([r for r in results if r==-1])/len(results))
