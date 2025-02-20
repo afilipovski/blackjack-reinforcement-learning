@@ -1,0 +1,20 @@
+[project]
+name = "dqn"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "gymnasium (==1.0.0)",
+    "sb3-contrib (>=2.5.0,<3.0.0)",
+    "optuna (>=4.2.1,<5.0.0)",
+    "seaborn (>=0.13.2,<0.14.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
